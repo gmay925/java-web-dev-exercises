@@ -8,6 +8,16 @@ public class Student {
     private int numberOfCredits = 0;
     private double gpa = 0.0;
 
+
+//    public void setName(String name){
+//        this.name = name;
+//    }
+//    public void getName() {
+//        return name;
+//
+//    }
+//    }
+
     public Student (String name, int studentId, int numberOfCredits, double gpa) {
         this.name = name;
         this.studentId = studentId;
@@ -30,20 +40,46 @@ public class Student {
 
 
      //TODO: Uncomment and complete the getGradeLevel method here:
-//    public String getGradeLevel() {
+   public String getGradeLevel() {
+        if(numberOfCredits <= 29){
+            return "Freshman";
+        } else if(numberOfCredits <= 59){
+            return "Sophomore";
+        } else if(numberOfCredits <= 89){
+            return "Junior";
+        } else{
+            return "Senior";
+        }
+   }
+
+    //}
 //        // Determine the grade level of the student based on numberOfCredits
 //    }
 
     // TODO: Complete the addGrade method.
     public void addGrade(int courseCredits, double grade) {
         // Update the appropriate fields: numberOfCredits, gpa
+        Double totalScore = this.gpa * this.numberOfCredits;
+                totalScore += courseCredits * grade;
+                this.numberOfCredits += numberOfCredits;
+                this.gpa = totalScore/numberOfCredits;
     }
 
     // TODO: Add your custom 'toString' method here. Make sure it returns a well-formatted String rather
     //  than just the class fields.
+    public  String toString(){
+        return("Student "+name+" ;Student Id: " + studentId +" ; Current GPA: " + gpa +" ; Current Credits" + numberOfCredits  );
+    }
 
     // TODO: Add your custom 'equals' method here. Consider which fields should match in order to call two
     //  Student objects equal.
+    public boolean equals(Student target){
+        if(target.getClass() != getClass()){
+            return false;
+        }
+        Student theStudent = (Student)target;
+        return theStudent.getStudentId() == getStudentId();
+    }
 
     public String getName() {
         return name;
